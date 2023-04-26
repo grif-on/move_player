@@ -71,6 +71,7 @@ let movePlayerToolStruct = {
 		})
 	},
 	mapChanged(oldMap,newMap) {
+		if (newMap === null) return; //in case there is no map (title screen)
 		newMap.selectedLayersChanged.connect(function(asset) {
 			/*movePlayerToolStruct.movePlayerToolStruct.enabled = false; // for some reason not working from here but work from updateEnabledState() (Tiled 1.8)*/
 			movePlayerToolStruct.shouldBeEnabled = false;
