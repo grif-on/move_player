@@ -54,8 +54,8 @@ function findObjectByMultipleTypes(arraOfTypes) {
 	return foundObject;
 }
 
-let shouldBeEnabled = false;
 let movePlayerToolStruct = {
+	shouldBeEnabled: false,
 	name: "Move player to the cursor",
 	icon: "pony.png",
 	mousePressed(button, x, y, modifiers) {
@@ -71,19 +71,19 @@ let movePlayerToolStruct = {
 	},
 	mapChanged(oldMap,newMap) {
 		newMap.selectedLayersChanged.connect(function(asset) {
-			/*movePlayerToolStruct.enabled = false; // for some reason not working from here but work from updateEnabledState() (Tiled 1.8)*/
-			shouldBeEnabled = false;
+			/*movePlayerToolStruct.movePlayerToolStruct.enabled = false; // for some reason not working from here but work from updateEnabledState() (Tiled 1.8)*/
+			movePlayerToolStruct.shouldBeEnabled = false;
 			newMap.selectedLayers.forEach(layer => {
 				if (layer) {
 					movePlayerToolStruct.enabled = true;
-					shouldBeEnabled = true;
+					movePlayerToolStruct.shouldBeEnabled = true;
 				}
 				//tiled.log(layer.name);
 			});
 		})
 	},
 	updateEnabledState() {
-			movePlayerToolStruct.enabled = shouldBeEnabled;
+			movePlayerToolStruct.enabled = movePlayerToolStruct.shouldBeEnabled;
 	},
 };
 
