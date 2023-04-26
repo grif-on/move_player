@@ -87,4 +87,4 @@ let movePlayerToolStruct = {
 	},
 };
 
-movePlayerToolStruct = tiled.registerTool("MovePlayer", movePlayerToolStruct);
+tiled.registerTool("MovePlayer", movePlayerToolStruct);
