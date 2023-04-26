@@ -54,12 +54,13 @@ function findObjectByMultipleTypes(arraOfTypes) {
 	return foundObject;
 }
 
+let sharedName = "Move player to the cursor";
 let movePlayerToolStruct = {
 	shouldBeEnabled: false,
-	name: "Move player to the cursor",
+	name: sharedName,
 	icon: "pony.png",
 	mousePressed(button, x, y, modifiers) {
-		tiled.activeAsset.macro("Move player", function () {
+		tiled.activeAsset.macro(sharedName, function () {
 			let player = findObjectByMultipleTypes(["obj_Player","Player"]);
 			if (player === null) {
 				tiled.alert("Can't find Player object !")
