@@ -78,7 +78,7 @@ let movePlayerToolStruct = {
 					movePlayerToolStruct.enabled = true;
 					shouldBeEnabled = true;
 				}
-				tiled.log(layer.name);
+				//tiled.log(layer.name);
 			});
 		})
 	},
