@@ -72,7 +72,7 @@ let movePlayerToolStruct = {
 	},
 	mapChanged(oldMap,newMap) {
 		if (newMap === null) return; //in case there is no map (title screen)
-		newMap.selectedLayersChanged.connect(function(asset) {
+		let prepareToChange = function(asset) {
 			/*movePlayerToolStruct.movePlayerToolStruct.enabled = false; // for some reason not working from here but work from updateEnabledState() (Tiled 1.8)*/
 			movePlayerToolStruct.shouldBeEnabled = false;
 			newMap.selectedLayers.forEach(layer => {
@@ -82,7 +82,9 @@ let movePlayerToolStruct = {
 				}
 				//tiled.log(layer.name);
 			});
-		})
+		};
+		prepareToChange();
+		newMap.selectedLayersChanged.connect(prepareToChange);
 	},
 	updateEnabledState() {
 			movePlayerToolStruct.enabled = movePlayerToolStruct.shouldBeEnabled;
