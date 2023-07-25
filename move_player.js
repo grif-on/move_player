@@ -63,7 +63,14 @@ let movePlayerToolStruct = {
 		tiled.activeAsset.macro(sharedName, function () {
 			let player = findObjectByMultipleTypes(["obj_Player","Player"]);
 			if (player === null) {
-				tiled.alert("Can't find Player object !")
+				let createMissingPlayer = tiled.confirm("Create new Player object ?","Can't find Player object !");
+				if (createMissingPlayer) {
+					let newPlayer = new MapObject(MapObject.Point);
+					newPlayer.type = "Player";
+					newPlayer.x = x;
+					newPlayer.y = y;
+					tiled.activeAsset.selectedLayers[0].addObject(newPlayer);
+				}
 			} else {
 			player.x = x;
 			player.y = y;
